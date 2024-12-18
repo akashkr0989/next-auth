@@ -13,8 +13,8 @@ export const authOptions = {
       },
       async authorize(credentials) {
         const { email, password } = credentials;
-        if (email === "abc@yopmail.com" && password === "123456") {
-          return { id: 1, name: "John Doe", email: "test@example.com" };
+        if (email === "abc@yopmail.com" && password === "Admin@123") {
+          return { id: 1, name: "Kumar", email: "abc@yopmail.com" };
         }
         return null;
       }
