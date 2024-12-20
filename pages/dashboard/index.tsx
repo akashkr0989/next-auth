@@ -24,12 +24,17 @@
 
 // export default Dashboard;
 
-
-
-
-
 import { useState } from "react";
-import { Flex, Box, Heading, Button, Card, Text } from "@radix-ui/themes";
+import {
+  Flex,
+  Box,
+  Heading,
+  Button,
+  Card,
+  Text,
+  Blockquote
+} from "@radix-ui/themes";
+import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
   const [username, setUsername] = useState("");
@@ -37,6 +42,10 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [toDoList, setToDoList] = useState<string[]>([]);
   const [newTask, setNewTask] = useState("");
+
+  const { data: session } = useSession();
+
+  console.log(session);
 
   const fetchRepos = async () => {
     if (!username) return;
@@ -70,6 +79,12 @@ const Dashboard = () => {
       <Heading size="4" mb="6" align="center">
         Welcome to Your Dashboard
       </Heading>
+      <Box maxWidth="500px" mt={"5"} mb="6">
+        <Blockquote size="5">
+          Name: {session?.user?.name} <br />
+          Email: {session?.user?.email}
+        </Blockquote>
+      </Box>
       <Flex gap="6" direction="column">
         {/* GitHub Repos Section */}
         <Box>
@@ -85,7 +100,7 @@ const Dashboard = () => {
                 padding: "10px",
                 border: "1px solid #D1D5DB",
                 borderRadius: "8px",
-                width: "300px",
+                width: "300px"
               }}
             />
             <Button onClick={fetchRepos} variant="solid" disabled={loading}>
@@ -128,7 +143,7 @@ const Dashboard = () => {
                 padding: "10px",
                 border: "1px solid #D1D5DB",
                 borderRadius: "8px",
-                width: "300px",
+                width: "300px"
               }}
             />
             <Button onClick={addTask} variant="solid">
@@ -146,7 +161,7 @@ const Dashboard = () => {
                   justifyContent: "space-between",
                   alignItems: "center",
                   padding: "10px 15px",
-                  border: "1px solid #D1D5DB",
+                  border: "1px solid #D1D5DB"
                 }}
               >
                 <Text>{task}</Text>
