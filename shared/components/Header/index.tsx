@@ -26,9 +26,28 @@ const Header = () => {
         // style={{ maxWidth: "1200px", margin: "0 auto" }}
       >
         {/* Application Logo */}
-        <Heading size="4" style={{ color: "white", fontWeight: "bold" }}>
+        <Heading size="4" style={{ color: "white", fontWeight: "bold", cursor: "pointer" }}
+        onClick={() => router.push("/")}
+        >
           My Application
         </Heading>
+
+        {session && (
+          <Flex align="center" gap="4">
+            <Button
+              onClick={() => router.push("/video")}
+              variant="solid"
+              color="pink"
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer"
+              }}
+            >
+              Video Player
+            </Button>
+          </Flex>
+        )}
 
         {/* User Session */}
         {session ? (

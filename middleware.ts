@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
   const url = req.url;
+
   const session = req.cookies.get("next-auth.session-token"); // Check if session exists
 
-  const protectedRoutes = ["/dashboard", "/profile", "/settings"]; // Add all protected routes here
+  const protectedRoutes = ["/dashboard", "/profile", "/settings", "/video"]; // Add all protected routes here
 
   // Redirect to login if accessing a protected route without a session
   if (protectedRoutes.some((route) => url.includes(route)) && !session) {
@@ -21,5 +22,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/profile", "/settings", "/login"], // Add all routes to be matched
+  matcher: ["/dashboard", "/profile", "/settings","/video", "/login"], // Add all routes to be matched
 };

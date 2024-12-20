@@ -47,6 +47,8 @@ const Dashboard = () => {
 
   console.log(session);
 
+  if (!session) return <p>Loading...</p>;
+
   const fetchRepos = async () => {
     if (!username) return;
 
